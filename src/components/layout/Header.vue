@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { BIconCart, BIconXLg, BIconList } from 'bootstrap-icons-vue'
 
