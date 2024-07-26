@@ -7,16 +7,25 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      meta: {
+        title: ''
+      },
       component: HomeView
     },
     {
       path: '/products',
       name: 'products',
+      meta: {
+        title: 'Products'
+      },
       component: () => import('../views/ProductsView.vue')
     },
     {
       path: '/cart',
       name: 'cart',
+      meta: {
+        title: 'Cart'
+      },
       component: () => import('../views/CartView.vue')
     }
   ]

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { BIconCart, BIconXLg, BIconList } from 'bootstrap-icons-vue'
 
-const isNavOpened = ref(false)
+const isNavOpened: Ref<boolean> = ref(false)
 
-const handleToggleNav = () => {
+const handleToggleNav = (): void => {
   isNavOpened.value = !isNavOpened.value
 }
-const handleCloseNav = () => {
+const handleCloseNav = (): void => {
   if (isNavOpened.value) {
     isNavOpened.value = false
   }
@@ -20,7 +20,7 @@ const handleCloseNav = () => {
     <div class="container mx-auto">
       <nav class="flex items-center h-16 md:h-auto px-3 md:px-0">
         <RouterLink to="/" class="mr-10">
-          <img src="@/assets/images/logo.png" alt="Aldi" class="w-8 md:w-16 mt-1 mb-2" />
+          <img src="@/assets/images/logo.png" alt="Aldi" class="w-8 md:w-16 mt-1 md:mt-0 mb-2" />
         </RouterLink>
 
         <div

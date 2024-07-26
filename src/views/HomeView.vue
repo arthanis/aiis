@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <p>HomeView</p>
+  <p>Welcome to Aldi online.</p>
 </template>

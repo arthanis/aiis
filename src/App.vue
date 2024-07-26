@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 import Header from './components/layout/Header.vue'
+
+const route = useRoute()
 </script>
 
 <template>
   <Header />
 
-  <main class="container mx-auto py-5">
+  <main class="container mx-auto p-5 lg:px-0 lg:py-10">
+    <h1 class="mb-5 text-lg md:text-2xl font-bold">{{ route.meta.title }}</h1>
+
     <RouterView />
   </main>
 </template>
