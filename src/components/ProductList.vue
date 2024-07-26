@@ -3,7 +3,7 @@ import ProductItem from '@/components/ProductItem.vue'
 import type { ProductType } from '@/types/Product'
 
 const { products } = defineProps<{
-  products: null | ProductType[]
+  products: ProductType[] | null
 }>()
 </script>
 

@@ -18,7 +18,7 @@ const handleCloseNav = (): void => {
 
 <template>
   <header class="bg-indigo-900 text-white">
-    <div class="container mx-auto">
+    <div class="container max-w-screen-xl mx-auto">
       <nav class="flex items-center h-16 md:h-auto px-3 md:px-0">
         <RouterLink to="/" class="mr-10">
           <img src="@/assets/images/logo.png" alt="Aldi" class="w-8 md:w-16 mt-1 md:mt-0 mb-2" />
