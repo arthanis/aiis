@@ -8,6 +8,11 @@ const isNavOpened = ref(false)
 const handleToggleNav = () => {
   isNavOpened.value = !isNavOpened.value
 }
+const handleCloseNav = () => {
+  if (isNavOpened.value) {
+    isNavOpened.value = false
+  }
+}
 </script>
 
 <template>
@@ -34,6 +39,7 @@ const handleToggleNav = () => {
           >
             <span>Home</span>
           </RouterLink>
+
           <RouterLink
             to="/products"
             active-class="nav-item-active"
@@ -48,7 +54,7 @@ const handleToggleNav = () => {
           to="/cart"
           active-class="nav-item-active"
           class="nav-item ml-auto md:px-3 text-xl"
-          @click="handleToggleNav"
+          @click="handleCloseNav"
         >
           <span>
             <BIconCart />

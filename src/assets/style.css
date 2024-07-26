@@ -12,7 +12,7 @@
 
 @layer components {
   .nav-item {
-    @apply md:self-stretch md:flex md:items-center md:border-b-4 md:border-transparent hover:text-yellow-400 font-semibold pt-1;
+    @apply md:self-stretch md:flex md:items-center md:border-b-4 md:border-transparent hover:text-yellow-400 font-semibold md:pt-1;
   }
 
   .nav-item-active {
