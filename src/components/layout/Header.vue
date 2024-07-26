@@ -1,14 +1,66 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import { BIconCart, BIconXLg, BIconList } from 'bootstrap-icons-vue'
+
+const isNavOpened = ref(false)
+
+const handleToggleNav = () => {
+  isNavOpened.value = !isNavOpened.value
+}
 </script>
 
 <template>
-  <header class="bg-neutral-100">
-    <div class="container mx-auto py-3">
-      <nav class="flex items-center gap-x-5">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/products">Products</RouterLink>
-        <RouterLink to="/products" class="ml-auto">Cart</RouterLink>
+  <header class="bg-indigo-900 text-white">
+    <div class="container mx-auto">
+      <nav class="flex items-center h-16 md:h-auto px-3 md:px-0">
+        <RouterLink to="/" class="mr-10">
+          <img src="@/assets/images/logo.png" alt="Aldi" class="w-8 md:w-16 mt-1 mb-2" />
+        </RouterLink>
+
+        <div
+          class="flex-col md:self-stretch md:flex-row md:items-center gap-y-3 md:gap-y-0 md:gap-x-10 px-5 py-3 md:p-0"
+          :class="
+            isNavOpened
+              ? 'flex fixed top-16 left-0 right-0 bg-blue-950 md:static md:bg-transparent'
+              : 'hidden md:flex'
+          "
+        >
+          <RouterLink
+            to="/"
+            active-class="nav-item-active"
+            class="nav-item"
+            @click="handleToggleNav"
+          >
+            <span>Home</span>
+          </RouterLink>
+          <RouterLink
+            to="/products"
+            active-class="nav-item-active"
+            class="nav-item"
+            @click="handleToggleNav"
+          >
+            <span>Products</span>
+          </RouterLink>
+        </div>
+
+        <RouterLink
+          to="/cart"
+          active-class="nav-item-active"
+          class="nav-item ml-auto md:px-3 text-xl"
+          @click="handleToggleNav"
+        >
+          <span>
+            <BIconCart />
+          </span>
+        </RouterLink>
+        <button
+          type="button"
+          class="bg-none text-white text-xl ml-2 md:hidden"
+          @click="handleToggleNav"
+        >
+          <component :is="isNavOpened ? BIconXLg : BIconList" />
+        </button>
       </nav>
     </div>
   </header>
