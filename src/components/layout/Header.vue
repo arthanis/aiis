@@ -28,7 +28,7 @@ const handleCloseNav = (): void => {
           class="flex-col md:self-stretch md:flex-row md:items-center gap-y-3 md:gap-y-0 md:gap-x-10 px-5 py-3 md:p-0"
           :class="
             isNavOpened
-              ? 'flex fixed top-16 left-0 right-0 bg-blue-950 md:static md:bg-transparent'
+              ? 'flex absolute top-16 left-0 right-0 bg-blue-950 md:static md:bg-transparent'
               : 'hidden md:flex'
           "
         >
