@@ -39,7 +39,7 @@ const getTotalQty = () => getCartItems.reduce((acc, cartItem) => acc + cartItem.
           <RouterLink
             to="/"
             active-class="nav-item-active"
-            class="nav-item"
+            class="nav-item nav-item-home"
             @click="handleToggleNav"
           >
             <span>Home</span>
@@ -48,7 +48,7 @@ const getTotalQty = () => getCartItems.reduce((acc, cartItem) => acc + cartItem.
           <RouterLink
             to="/products"
             active-class="nav-item-active"
-            class="nav-item"
+            class="nav-item nav-item-products"
             @click="handleToggleNav"
           >
             <span>Products</span>
@@ -58,9 +58,10 @@ const getTotalQty = () => getCartItems.reduce((acc, cartItem) => acc + cartItem.
         <RouterLink
           to="/cart"
           active-class="nav-item-active"
-          class="nav-item ml-auto md:px-3 text-xl"
+          class="nav-item nav-item-cart ml-auto md:px-3 text-xl"
           @click="handleCloseNav"
         >
+          <span class="text-base mr-2">Cart</span>
           <span class="relative">
             <BIconCart />
             <div v-if="getTotalQty() > 0" class="badge badge-secondary absolute -top-1 left-4 px-1">

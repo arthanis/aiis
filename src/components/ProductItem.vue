@@ -52,7 +52,11 @@ const handleBlur = () => {
         :max="product.availableAmount"
         @blur="handleBlur"
       />
-      <button type="button" class="btn btn-primary btn-sm px-0 flex-1" @click="handleAddToCart">
+      <button
+        type="button"
+        class="btn btn-primary btn-sm btn-add-to-cart px-0 flex-1"
+        @click="handleAddToCart"
+      >
         Add to cart
         <BIconCart />
       </button>
