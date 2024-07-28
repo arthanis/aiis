@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import CartList from '@/components/CartList.vue'
-
 import { useCartStore } from '@/stores/cart'
 
-const { cartItems } = useCartStore()
+const { getCartItems } = useCartStore()
 </script>
 
 <template>
-  <CartList :products="cartItems" />
+  <CartList :products="getCartItems" />
 </template>

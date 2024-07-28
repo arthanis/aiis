@@ -1,32 +1,40 @@
-import { ref } from 'vue'
+import { reactive, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { ProductItemType } from '@/types/product-item.type'
 import type { CartItemType } from '@/types/cart-item.type'
 
 export const useCartStore = defineStore('cart', () => {
-  const cartItems = ref<CartItemType[]>([])
+  const cartItems = reactive<CartItemType[]>([])
+  const getCartItems = computed(() => cartItems)
+
   const addToCart = (productItem: ProductItemType, qty: number) => {
-    const index = cartItems.value.findIndex((cartItem) => cartItem.id === productItem.id)
+    const index = cartItems.findIndex((cartItem) => cartItem.id === productItem.id)
 
     if (index === -1) {
-      cartItems.value.push({
+      cartItems.push({
         ...productItem,
         qty: Math.min(qty, productItem.availableAmount)
       })
     } else {
-      const cartItem = cartItems.value[index]
+      const cartItem = cartItems[index]
       const newQty = cartItem.qty + qty
 
       cartItem.qty = Math.min(newQty, productItem.availableAmount)
     }
   }
 
-  const updateCart = (productItem: CartItemType, qty: number) => {
-    const index = cartItems.value.findIndex((cartItem) => cartItem.id === productItem.id)
-    const cartItem = cartItems.value[index]
+  const updateCartItem = (id: string, qty: number) => {
+    const index = cartItems.findIndex((cartItem) => cartItem.id === id)
+    const cartItem = cartItems[index]
 
-    cartItem.qty = Math.min(qty, productItem.availableAmount)
+    cartItem.qty = Math.min(qty, cartItem.availableAmount)
   }
 
-  return { cartItems, addToCart, updateCart }
+  const deleteCartItem = (id: string) => {
+    const index = cartItems.findIndex((cartItem) => cartItem.id === id)
+
+    cartItems.splice(index, 1)
+  }
+
+  return { cartItems, getCartItems, addToCart, updateCartItem, deleteCartItem }
 })

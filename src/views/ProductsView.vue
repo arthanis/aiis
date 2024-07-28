@@ -3,16 +3,12 @@ import { useFetch } from '@vueuse/core'
 import ProductList from '@/components/ProductList.vue'
 import type { ProductItemType } from '@/types/product-item.type'
 
-import { useCartStore } from '@/stores/cart'
-
 const url = import.meta.env.VITE_API_URL
 const {
   isFetching,
   error,
   data = []
 } = useFetch(url).get().json<ProductItemType[] | never[] | null>()
-
-const { cartItems } = useCartStore()
 </script>
 
 <template>

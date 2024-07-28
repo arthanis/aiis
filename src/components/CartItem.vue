@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { BIconCart, BIconInfoCircleFill } from 'bootstrap-icons-vue'
+import { BIconCart, BIconInfoCircleFill, BIconTrash } from 'bootstrap-icons-vue'
 import { useCartStore } from '@/stores/cart'
 import type { CartItemType } from '@/types/cart-item.type'
 
@@ -8,14 +8,18 @@ const { product } = defineProps<{
   product: CartItemType
 }>()
 
-const { updateCart } = useCartStore()
+const { updateCartItem, deleteCartItem } = useCartStore()
 const qty = ref<number>(product.qty)
 
 const getPrice = (number: number): string => {
   return new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'EUR' }).format(number)
 }
 const handleUpdateCartItem = (): void => {
-  updateCart({ ...product }, qty.value)
+  updateCartItem(product.id, qty.value)
+}
+
+const handleDeleteCartItem = (): void => {
+  deleteCartItem(product.id)
 }
 
 const handleBlur = () => {
@@ -59,18 +63,30 @@ const handleBlur = () => {
       </div>
     </div>
 
-    <div class="flex items-center gap-3 my-2 md:w-30 ml-auto">
+    <div class="flex items-center gap-3 my-2 md:w-auto ml-auto">
       <input
         v-model.number="qty"
         type="number"
-        class="input input-bordered input-sm w-16 pr-0 text-center"
+        class="input input-bordered input-sm pr-0 text-center"
         :min="product.minOrderAmount"
         :max="product.availableAmount"
         @blur="handleBlur"
       />
-      <button type="button" class="btn btn-primary btn-sm flex-1" @click="handleUpdateCartItem">
-        Update cart item
+      <button
+        type="button"
+        class="btn btn-primary btn-sm whitespace-nowrap"
+        @click="handleUpdateCartItem"
+      >
+        Update
         <BIconCart />
+      </button>
+      <button
+        type="button"
+        class="btn btn-error btn-sm whitespace-nowrap"
+        @click="handleDeleteCartItem"
+      >
+        Delete
+        <BIconTrash />
       </button>
     </div>
   </div>

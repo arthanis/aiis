@@ -16,8 +16,8 @@ const handleCloseNav = (): void => {
   }
 }
 
-const { cartItems } = useCartStore()
-const getTotalQty = () => cartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0)
+const { getCartItems } = useCartStore()
+const getTotalQty = () => getCartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0)
 </script>
 
 <template>
