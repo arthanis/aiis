@@ -21,5 +21,12 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  return { cartItems, addToCart }
+  const updateCart = (productItem: CartItemType, qty: number) => {
+    const index = cartItems.value.findIndex((cartItem) => cartItem.id === productItem.id)
+    const cartItem = cartItems.value[index]
+
+    cartItem.qty = Math.min(qty, productItem.availableAmount)
+  }
+
+  return { cartItems, addToCart, updateCart }
 })
