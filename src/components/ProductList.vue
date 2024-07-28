@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import ProductItem from '@/components/ProductItem.vue'
-import type { ProductType } from '@/types/Product'
+import type { ProductItemType } from '@/types/product-item.type'
 
 const { products } = defineProps<{
-  products: ProductType[] | null
+  products: ProductItemType[] | null
 }>()
 </script>
 

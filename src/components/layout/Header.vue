@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { BIconCart, BIconXLg, BIconList } from 'bootstrap-icons-vue'
+import { useCartStore } from '@/stores/cart'
+import type { Ref } from 'vue'
 
 const isNavOpened: Ref<boolean> = ref(false)
 
@@ -14,6 +15,9 @@ const handleCloseNav = (): void => {
     isNavOpened.value = false
   }
 }
+
+const { cartItems } = useCartStore()
+const getTotalQty = () => cartItems.reduce((acc, cartItem) => acc + cartItem.qty, 0)
 </script>
 
 <template>
@@ -57,8 +61,11 @@ const handleCloseNav = (): void => {
           class="nav-item ml-auto md:px-3 text-xl"
           @click="handleCloseNav"
         >
-          <span>
+          <span class="relative">
             <BIconCart />
+            <div v-if="getTotalQty() > 0" class="badge badge-secondary absolute -top-1 left-4 px-1">
+              {{ getTotalQty() }}
+            </div>
           </span>
         </RouterLink>
         <button
