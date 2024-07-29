@@ -64,7 +64,10 @@ const getTotalQty = () => getCartItems.reduce((acc, cartItem) => acc + cartItem.
           <span class="text-base mr-2">Cart</span>
           <span class="relative">
             <BIconCart />
-            <div v-if="getTotalQty() > 0" class="badge badge-secondary absolute -top-1 left-4 px-1">
+            <div
+              v-if="getTotalQty() > 0"
+              class="badge badge-secondary absolute -top-1 left-4 px-1 cart-qty"
+            >
               {{ getTotalQty() }}
             </div>
           </span>
