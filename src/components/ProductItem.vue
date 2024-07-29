@@ -2,19 +2,29 @@
 import { ref } from 'vue'
 import { BIconCart, BIconInfoCircleFill } from 'bootstrap-icons-vue'
 import { useCartStore } from '@/stores/cart'
+import { useToast } from 'vue-toast-notification'
 import type { ProductItemType } from '@/types/product-item.type'
 
 const { product } = defineProps<{
   product: ProductItemType
 }>()
-
 const { addToCart } = useCartStore()
-const qty = ref<number>(Math.max(product.minOrderAmount, 1))
+
+const qty = ref<number>(1)
+const $toast = useToast()
 
 const getPrice = (number: number): string => {
   return new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'EUR' }).format(number)
 }
 const handleAddToCart = (): void => {
+  if (qty.value < product.minOrderAmount) {
+    $toast.info(`Minimum order amount: ${product.minOrderAmount}`, {
+      type: 'warning',
+      duration: 5000
+    })
+
+    return
+  }
   addToCart({ ...product }, qty.value)
 }
 
